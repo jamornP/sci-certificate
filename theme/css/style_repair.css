@@ -1,0 +1,19 @@
+.box-color {
+    width: 27px;
+    height: 27px;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.897) 0%, rgba(255, 255, 255, 0.76) 100%), url('/science/repair/images/bg-001.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+/* .bg-poster {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.24) 100%), url('/science/car/images/bg_car03.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+} */

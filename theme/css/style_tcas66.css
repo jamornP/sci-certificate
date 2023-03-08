@@ -1,0 +1,11 @@
+.box-color {
+    width: 27px;
+    height: 27px;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.897) 0%, rgba(255, 255, 255, 0.76) 100%), url('/science/tcas66/images/bg-01.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
