@@ -34,7 +34,29 @@ $personObj = new Data;
             </div>
             <div class="card-body">
                 <form class="d-flex" action="" method="POST">
-                    <input class="form-control me-2" type="search" placeholder="ใส่ชื่ออย่างเดียว" aria-label="Search" name="search" autofocus>
+                    <select class="form-select me-2" aria-label="Default select example" name="search">
+                        <?php
+                        if (isset($_POST['search'])) {
+                            echo "
+                                    <option selected>{$_POST['search']}</option>
+                               ";
+                        } else {
+                            echo "
+                                    <option selected>เลือกกิจกรรม</option>
+                                ";
+                        }
+                        ?>
+
+                        <?php
+                        $project = $personObj->getGroupProject();
+                        foreach ($project as $pro) {
+                            echo "
+                                    <option value='{$pro['project']}'>{$pro['project']}</option>
+                                ";
+                        }
+                        ?>
+                    </select>
+                    <!-- <input class="form-control me-2" type="search" placeholder="ใส่ชื่ออย่างเดียว" aria-label="Search" name="search" autofocus> -->
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
@@ -42,13 +64,23 @@ $personObj = new Data;
         </div>
         <?php
         $ck = 0;
+        $pro="";
         if (isset($_POST['search'])) {
-            $per = $_POST['search'];
-            $data = $personObj->getCerByPerson($per);
+
+            $data = $personObj->getDataByProject($_POST['search']);
             $ck = count($data);
-        }
+            echo "<p><b>จำวนวน {$ck} คน</b></p>";
+            $pro =$_POST['search'];
+        
         ?>
-        <div class="card">
+        <div class="card mt-5">
+            <div class="card-header">
+                <form class="d-flex" action="gen_certificate.php" method="POST">
+                    <input class="form-control me-2" type="hidden"  name="project" value="<?php echo $pro;?>">
+                    <input class="form-control me-2" type="text"  placeholder="ชื่อ Folder" name="folder" require autofocus>
+                    <button class="btn btn-success text-white" type="submit">สร้าง Certificate</button>
+                </form>
+            </div>
             <div class="card-body">
 
                 <table class="table mt-5">
@@ -66,13 +98,12 @@ $personObj = new Data;
                             foreach ($data as $person) {
                                 $fullname = $person['title'] . $person['name'] . " " . $person['surname'];
                                 $i++;
-                                $link = $person['file_cer'];
                                 echo "
-                                <tr>
-                                    <td>{$i}</td>
-                                    <td>{$fullname}</td>
-                                    <td><a href='/sci-certificate/upload{$link}'>Download</a></td>
-                                </tr>
+                            <tr>
+                                <td>{$i}</td>
+                                <td>{$fullname}</td>
+                                <td>Download</td>
+                            </tr>
                         ";
                             }
                         }
@@ -82,6 +113,9 @@ $personObj = new Data;
                 </table>
             </div>
         </div>
+        <?php
+            }
+        ?>
     </div>
 
 </body>
