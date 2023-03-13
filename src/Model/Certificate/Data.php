@@ -41,7 +41,7 @@ class Data extends DbCertificate{
         $sql ="
             SELECT *
             FROM tb_data
-            WHERE name LIKE '{$person}%'
+            WHERE name LIKE '".$person."%'
             ORDER BY project  
              
         ";

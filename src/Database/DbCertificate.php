@@ -5,7 +5,7 @@ use PDO;
 
 class DbCertificate{
     private $host = "localhost";
-	private $user = "root";
+	private $user = "usersci";
 	private $password = "sciencepwd";
 	private $dbName = "db_certificate";
 

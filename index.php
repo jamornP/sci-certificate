@@ -1,5 +1,5 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/vendor/autoload.php" ?>
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/lib/TCPDF-master/tcpdf.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/sci-certificate/vendor/autoload.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/sci-certificate/lib/TCPDF-master/tcpdf.php"; ?>
 <?php
 
 use App\Model\Certificate\Data;
