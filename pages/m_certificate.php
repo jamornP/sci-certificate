@@ -97,12 +97,17 @@ $personObj = new Data;
                             $i = 0;
                             foreach ($data as $person) {
                                 $fullname = $person['title'] . $person['name'] . " " . $person['surname'];
+                                if($person['file_cer']<>""){
+                                    $certificate = "Yes";
+                                }else{
+                                    $certificate = "No";
+                                }
                                 $i++;
                                 echo "
                             <tr>
                                 <td>{$i}</td>
                                 <td>{$fullname}</td>
-                                <td>Download</td>
+                                <td>{$certificate}</td>
                             </tr>
                         ";
                             }

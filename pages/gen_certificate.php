@@ -91,7 +91,7 @@ foreach ($persons as $person) {
 
     $pdf->SetFont('thsarabun', 'B');
     $pdf->SetTextColor(0, 98, 133);
-    $pdf->SetFontSize(30);
+    $pdf->SetFontSize(28);
     $pdf->MultiCell(0, 0, 'วันที่ '.$date_at, 0, 'C', 0, 1, 0, 142);
 
 
