@@ -49,7 +49,12 @@ $personObj = new Data;
                 if (is_dir($dirf)) {
     
                 } else {
-                    mkdir("$dirf", 0777);
+                    $ck = mkdir("$dirf", 0777);
+                }
+                if($ck){
+                    echo "Folder Created.";
+                }else{
+                    echo "Folder Not Created.".$ck;
                 }
             }
            
