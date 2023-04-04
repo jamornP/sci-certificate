@@ -45,7 +45,7 @@ $personObj = new Data;
         if(isset($_POST['folder'])){
             echo $_POST['folder'];
             if($_POST['folder']<>""){
-                $dirf = "../upload/certificate/{$_POST['folder']}";
+                $dirf = "upload/certificate/{$_POST['folder']}";
                 if (is_dir($dirf)) {
     
                 } else {
