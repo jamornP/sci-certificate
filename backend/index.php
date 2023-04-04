@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,8 @@
         print_r($_POST);
         $u = $_POST['username'];
         $p = $_POST['password'];
-        if ($u == "jamorn.pe" and $p == "admincertificate") {
+        if (($u == "jamorn.pe") and ($p == "admincertificate")) {
+            $_SESSION['login']= true;
             header("location:/sci-certificate/pages/m_certificate.php");
             exit(0);
         }else{

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/vendor/autoload.php" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/lib/TCPDF-master/tcpdf.php"; ?>
 <?php
@@ -28,6 +29,17 @@ $personObj = new Data;
         </div>
     </nav>
     <div class="container">
+        <?php 
+        if($_SESSION['login']){
+            echo "
+                <a href='/sci-certificate/backend/logout.php'>Logout</a>
+            ";
+        }else{
+            header("location:/sci-certificate/backend");
+            exit(0);
+        }
+            
+        ?>
         <div class="card text-center mt-5">
             <div class="card-header bg-primary text-white">
                 <h2>Certificate</h2>
@@ -39,6 +51,7 @@ $personObj = new Data;
                         if (isset($_POST['search'])) {
                             echo "
                                     <option selected>{$_POST['search']}</option>
+                                    <option>เลือกกิจกรรม</option>
                                ";
                         } else {
                             echo "
@@ -78,8 +91,10 @@ $personObj = new Data;
                 <form class="d-flex" action="gen_certificate.php" method="POST">
                     <input class="form-control me-2" type="hidden"  name="project" value="<?php echo $pro;?>">
                     <input class="form-control me-2" type="text"  placeholder="ชื่อ Folder" name="folder" require autofocus>
-                    <button class="btn btn-success text-white" type="submit">สร้าง Certificate</button>
+                    <button class="btn btn-success text-white me-2" type="submit">สร้าง Certificate</button>
+                    
                 </form>
+                <a class="btn btn-primary text-white mt-2" href="example.php?project=<?php echo $pro;?>" target="_blank">ตัวอย่าง Certificate</a>
             </div>
             <div class="card-body">
 

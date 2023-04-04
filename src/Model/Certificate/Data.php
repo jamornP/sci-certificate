@@ -15,6 +15,18 @@ class Data extends DbCertificate{
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getDataByProjectOne($project){
+        $sql ="
+            SELECT *
+            FROM tb_data
+            WHERE project = ?
+            ORDER BY name 
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$project]);
+        $data = $stmt->fetchAll();
+        return $data[0];
+    }
     public function getGroupProject(){
         $sql ="
             SELECT *

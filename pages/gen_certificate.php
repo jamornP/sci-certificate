@@ -2,15 +2,17 @@
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/lib/TCPDF-master/tcpdf.php"; ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/function/function.php"; ?>
 <?php
-// echo $_POST['folder'];
-
 $dirf = "../upload/certificate/{$_POST['folder']}";
 // echo $dirf;
+//window
 if (is_dir($dirf)) {
 } else {
-    @mkdir("$dirf", 0777);
+    mkdir("$dirf", 0777);
 }
-
+//linux
+// if (!is_dir($_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/upload/certificate/{$_POST['folder']}")) {
+//     mkdir($_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/upload/certificate/{$_POST['folder']}", 0777);
+// }
 
 use App\Model\Certificate\Data;
 
@@ -37,9 +39,9 @@ foreach ($persons as $person) {
     $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 
-    // $i++;
+    $i++;
 
-    $name = $person['title'].$person['name']." ".$person['surname'];
+    $name = $person['title'] . $person['name'] . " " . $person['surname'];
     // $name = "จามร";
     // add a page
     $pdf->AddPage();
@@ -72,12 +74,12 @@ foreach ($persons as $person) {
 
     $pdf->SetFont('thsarabun', '');
     $pdf->SetFontSize(28);
-    $pdf->MultiCell(0, 0, 'โรงเรียน'.$person['school'], 0, 'C', 0, 1, 0, 92);
+    $pdf->MultiCell(0, 0, 'โรงเรียน' . $person['school'], 0, 'C', 0, 1, 0, 92);
 
     $pdf->SetFont('thsarabun', 'B');
     // $pdf->SetTextColor(0,98,133);
     $pdf->SetFontSize(34);
-    $pdf->MultiCell(0, 0, 'ได้เข้าร่วม และผ่านเกณฑ์การทำแบบทดสอบ', 0, 'C', 0, 1, 0, 110);
+    $pdf->MultiCell(0, 0, $person['award'], 0, 'C', 0, 1, 0, 110);
     // $pdf->SetFont('thsarabun', 'B');
     // $pdf->SetTextColor(28,46,75);
     // $pdf->SetFontSize(30);
@@ -92,7 +94,7 @@ foreach ($persons as $person) {
     $pdf->SetFont('thsarabun', 'B');
     $pdf->SetTextColor(0, 98, 133);
     $pdf->SetFontSize(28);
-    $pdf->MultiCell(0, 0, 'วันที่ '.$date_at, 0, 'C', 0, 1, 0, 142);
+    $pdf->MultiCell(0, 0, 'วันที่ ' . $date_at, 0, 'C', 0, 1, 0, 142);
 
 
     $pdf->SetFont('thsarabun', '');
@@ -142,15 +144,16 @@ foreach ($persons as $person) {
 
     // $pdf->Close();
     //สร้างไฟล์
-    $fol = "\\sci-certificate\\upload\\certificate\\{$_POST['folder']}\\";
+    $fol = "\\sci-certificate\\upload\\certificate\\{$_POST['folder']}\\";//window
+    // $fol = "/sci-certificate/upload/certificate/{$_POST['folder']}"; //linux
     $filename = "{$_POST['folder']}-{$person['id']}-{$person['num']}.pdf";
     $filelocation = $_SERVER['DOCUMENT_ROOT'] . $fol; //windows
-    // $filelocation = "/var/www/project/custom"; //Linux
+    // $filelocation = "/home/jamorn" . $fol; //Linux
 
     $fileNL = $filelocation . "\\" . $filename; //Windows
-    // $fileNL = $filelocation."/".$filename; //Linux
+    // $fileNL = $filelocation . "/" . $filename; //Linux
 
-    $serv = "/certificate/".$_POST['folder']."/".$filename;
+    $serv = "/certificate/" . $_POST['folder'] . "/" . $filename;
     //QR Code
     $style = [
         'border' => 1,
@@ -162,14 +165,17 @@ foreach ($persons as $person) {
         'module_height' => 1 // height of a single module in points
     ];
     // QRCODE,M : QR-CODE Medium error correction
-    $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/upload/certificate/'.$_POST['folder'].'/'.$filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
+    $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
 
     //สร้าง pdf
     $pdf->Output($fileNL, 'F');
     $dataU['id'] = $person['id'];
     $dataU['file_cer'] = $serv;
-    print_r($dataU);
+    $show = $i.". ".$person['name']." ".$person['surname'];
+    echo "{$show}<br>";
     $up = $personObj->updateCer($dataU);
 }
 $pdf->Close();
+header("refresh: 10; url=/sci-certificate/pages/m_certificate.php");
+exit(0);
 ?>
