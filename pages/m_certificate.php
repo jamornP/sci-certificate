@@ -40,40 +40,90 @@ $personObj = new Data;
         }
             
         ?>
-        <div class="card text-center mt-5">
-            <div class="card-header bg-primary text-white">
+        <div class="card  mt-5">
+            <div class="card-header bg-primary text-white text-center">
                 <h2>Certificate</h2>
             </div>
             <div class="card-body">
-                <form class="d-flex" action="" method="POST">
-                    <select class="form-select me-2" aria-label="Default select example" name="search">
-                        <?php
-                        if (isset($_POST['search'])) {
-                            echo "
-                                    <option selected>{$_POST['search']}</option>
-                                    <option>เลือกกิจกรรม</option>
-                               ";
-                        } else {
-                            echo "
-                                    <option selected>เลือกกิจกรรม</option>
+                <form class="" action="" method="POST">
+                    <div class="row">
+                        <p>เลือกพื้นหลัง</p>  
+                        <div class="row">
+                            <?php
+                                $bg = array("certificate-BG.png","expo2023.jpg","sciday2022.png","sciday2022-bronze.png","sciday2022-gold.png","sciday2022-silver.png");
+                                for($i=0;$i<count($bg);$i++){
+                                    echo "
+                                    <div class='col-lg-2'>
+                                    
+                                        <div class='form-check'>
+                                            <input class='form-check-input' type='radio' name='bg' id='{$i}' value='{$bg[$i]}' required>
+                                            <label class='form-check-label' for='{$i}'>
+                                            <img src='/sci-certificate/background/{$bg[$i]}' class='img-thumbnail' alt='...'>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    ";
+                                }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="select" id="inlineRadio1" value="1" required>
+                        <label class="form-check-label" for="inlineRadio1">มีโรงเรียน</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="select" id="inlineRadio2" value="2" required>
+                        <label class="form-check-label" for="inlineRadio2">ไม่มีโรงเรียน</label>
+                    </div>
+                    </div>
+                    <div class="d-flex mt-3">
+                        <select class="form-select me-2 " aria-label="Default select example" name="search">
+                            <?php
+                            if (isset($_POST['search'])) {
+                                echo "
+                                        <option selected>{$_POST['search']}</option>
+                                        <option>เลือกกิจกรรม</option>
                                 ";
-                        }
-                        ?>
+                            } else {
+                                echo "
+                                        <option selected>เลือกกิจกรรม</option>
+                                    ";
+                            }
+                            ?>
 
-                        <?php
-                        $project = $personObj->getGroupProject();
-                        foreach ($project as $pro) {
-                            echo "
-                                    <option value='{$pro['project']}'>{$pro['project']}</option>
-                                ";
-                        }
-                        ?>
-                    </select>
-                    <!-- <input class="form-control me-2" type="search" placeholder="ใส่ชื่ออย่างเดียว" aria-label="Search" name="search" autofocus> -->
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                            <?php
+                            $project = $personObj->getGroupProject();
+                            foreach ($project as $pro) {
+                                echo "
+                                        <option value='{$pro['project']}'>{$pro['project']}</option>
+                                    ";
+                            }
+                            ?>
+                        </select>
+                        <!-- <input class="form-control me-2" type="search" placeholder="ใส่ชื่ออย่างเดียว" aria-label="Search" name="search" autofocus> -->
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </div>
                 </form>
             </div>
 
+        </div>
+        <div class="">
+            <div class="card ">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5>กิจกรรมที่สร้าง Certificate แล้ว</h5>
+                </div>
+                <div class="card-body">
+                    <?php
+                        $gencers = $personObj->getGenCerAll();
+                        foreach($gencers as $gencer){
+                            echo "
+                                <p>{$gencer['folder']}-{$gencer['project']}</p>
+                            ";
+                        }
+                    ?>
+                </div>
+            </div>
         </div>
         <?php
         $ck = 0;
@@ -84,17 +134,26 @@ $personObj = new Data;
             $ck = count($data);
             echo "<p><b>จำวนวน {$ck} คน</b></p>";
             $pro =$_POST['search'];
+            $bg = $_POST['bg'];
+            $select = $_POST['select'];
         
         ?>
         <div class="card mt-5">
             <div class="card-header">
-                <form class="d-flex" action="gen_certificate.php" method="POST">
-                    <input class="form-control me-2" type="hidden"  name="project" value="<?php echo $pro;?>">
-                    <input class="form-control me-2" type="text"  placeholder="ชื่อ Folder" name="folder" require autofocus>
-                    <button class="btn btn-success text-white me-2" type="submit">สร้าง Certificate</button>
+                <form class="" action="gen.php" method="POST">
                     
+                    
+                    <div class="d-flex mt-2">
+                        <input class="form-control me-2" type="hidden"  name="project" value='<?php echo $pro;?>'>
+                        <input class="form-control me-2" type="hidden"  name="bg" value='<?php echo $bg;?>'>
+                        <input class="form-control me-2" type="hidden"  name="select" value='<?php echo $select;?>'>
+                        <input class="form-control me-2" type="text"  placeholder="ชื่อ Folder ที่จะเก็บใบประกาศ" name="folder" require autofocus>
+                        <button class="btn btn-primary text-white me-2" type="submit" name="excample">ตัวอย่าง Certificate</button>
+                        <button class="btn btn-success text-white me-2" type="submit" name="create">สร้าง Certificate</button>
+                        
+                    </div>
                 </form>
-                <a class="btn btn-primary text-white mt-2" href="example.php?project=<?php echo $pro;?>" target="_blank">ตัวอย่าง Certificate</a>
+                <!-- <a class='btn btn-primary text-white mt-2' href='example.php?project=<?php //echo $pro;?>&bg=<?php //echo $bg;?>&select=<?php //echo $select;?>' target='_blank'>ตัวอย่าง Certificate</a> -->
             </div>
             <div class="card-body">
 
