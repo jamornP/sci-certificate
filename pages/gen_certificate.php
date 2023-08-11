@@ -165,7 +165,7 @@ foreach ($persons as $person) {
         'module_height' => 1 // height of a single module in points
     ];
     // QRCODE,M : QR-CODE Medium error correction
-    $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
+    $pdf->write2DBarcode('http://sciserv01.sci.kmitl.ac.th/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
 
     //สร้าง pdf
     $pdf->Output($fileNL, 'F');

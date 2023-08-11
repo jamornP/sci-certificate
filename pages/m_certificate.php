@@ -50,7 +50,7 @@ $personObj = new Data;
                         <p>เลือกพื้นหลัง</p>  
                         <div class="row">
                             <?php
-                                $bg = array("certificate-BG.png","expo2023.jpg","sciday2022.png","sciday2022-bronze.png","sciday2022-gold.png","sciday2022-silver.png");
+                                $bg = array("certificate-BG.png","expo2023.jpg","sciday2022.png","sciday2022-bronze.png","sciday2022-gold.png","sciday2022-silver.png","workshop2023.png");
                                 for($i=0;$i<count($bg);$i++){
                                     echo "
                                     <div class='col-lg-2'>

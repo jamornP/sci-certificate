@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/vendor/autoload.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/vendor/autoload.php"; ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/lib/TCPDF-master/tcpdf.php"; ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/sci-certificate/function/function.php"; ?>
 <?php
@@ -110,7 +110,7 @@ if(isset($_POST['excample'])){
                 'module_height' => 1 // height of a single module in points
             ];
             // QRCODE,M : QR-CODE Medium error correction
-            $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/', 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
+            $pdf->write2DBarcode('http://sciserv01.sci.kmitl.ac.th/sci-certificate/', 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
         
             //สร้าง pdf
             $pdf->Output('preview.pdf', 'I');
@@ -147,7 +147,7 @@ if(isset($_POST['excample'])){
             $pdf->Image($img_file, 0, 0, 0, 210, '', '', '', false, 300, '', false, false, 0);
             //ลายเซ็นต์ CA
             $img_ca = $_SERVER['DOCUMENT_ROOT'] . '/sci-certificate/background/ca/susu.png';
-            $pdf->Image($img_ca, 110, 147, 0, 50, '', '', '', false, 300, '', false, false, 0);
+            $pdf->Image($img_ca, 110, 135, 0, 50, '', '', '', false, 300, '', false, false, 0);
             // Print a text
             $pdf->SetFont('thsarabun', 'B');
             $pdf->SetTextColor(0, 98, 133);
@@ -165,7 +165,7 @@ if(isset($_POST['excample'])){
             $pdf->SetFontSize(36);
             $pdf->SetTextColor(28, 46, 75);
             // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
-            $pdf->MultiCell(0, 0, $name, 0, 'C', 0, 1, 0, 85);
+            $pdf->MultiCell(0, 0, $name, 0, 'C', 0, 1, 0, 82);
         
             // $pdf->SetFont('thsarabun', '');
             // $pdf->SetFontSize(28);
@@ -174,7 +174,7 @@ if(isset($_POST['excample'])){
             $pdf->SetFont('thsarabun', 'B');
             $pdf->SetTextColor(0, 98, 133);
             $pdf->SetFontSize(34);
-            $pdf->MultiCell(0, 0, $person['award'], 0, 'C', 0, 1, 0, 110);
+            $pdf->MultiCell(0, 0, $person['award'], 0, 'C', 0, 1, 0, 105);
             // $pdf->SetFont('thsarabun', 'B');
             // $pdf->SetTextColor(28,46,75);
             // $pdf->SetFontSize(30);
@@ -183,23 +183,23 @@ if(isset($_POST['excample'])){
             $pdf->SetFont('thsarabun', 'B');
             $pdf->SetTextColor(0, 98, 133);
             $pdf->SetFontSize(30);
-            $pdf->MultiCell(0, 0, $project, 0, 'C', 0, 1, 0, 127);
+            $pdf->MultiCell(0, 0, $project, 0, 'C', 0, 1, 0, 122);
         
         
             $pdf->SetFont('thsarabun', 'B');
             $pdf->SetTextColor(0, 98, 133);
             $pdf->SetFontSize(28);
-            $pdf->MultiCell(0, 0, 'วันที่ ' . $date_at, 0, 'C', 0, 1, 0, 142);
+            $pdf->MultiCell(0, 0, 'วันที่ ' . $date_at, 0, 'C', 0, 1, 0, 137);
         
         
             $pdf->SetFont('thsarabun', '');
             $pdf->SetTextColor(0, 98, 133);
             $pdf->SetFontSize(18);
-            $pdf->MultiCell(0, 0, '(รองศาสตราจารย์ ดร.สุธี  ชุติไพจิตร)', 0, 'C', 0, 1, 0, 182);
+            $pdf->MultiCell(0, 0, '(รองศาสตราจารย์ ดร.สุธี  ชุติไพจิตร)', 0, 'C', 0, 1, 0, 172);
             $pdf->SetFont('thsarabun', '');
             $pdf->SetTextColor(0, 98, 133);
             $pdf->SetFontSize(18);
-            $pdf->MultiCell(0, 0, 'คณบดี คณะวิทยาศาสตร์', 0, 'C', 0, 1, 0, 188);
+            $pdf->MultiCell(0, 0, 'คณบดี คณะวิทยาศาสตร์', 0, 'C', 0, 1, 0, 178);
         
         
             
@@ -213,7 +213,7 @@ if(isset($_POST['excample'])){
                 'module_height' => 1 // height of a single module in points
             ];
             // QRCODE,M : QR-CODE Medium error correction
-            $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/', 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
+            $pdf->write2DBarcode('http://sciserv01.sci.kmitl.ac.th/sci-certificate/', 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
         
             //สร้าง pdf
             $pdf->Output('preview.pdf', 'I');
@@ -264,7 +264,7 @@ if(isset($_POST['create'])){
                 $pdf->Image($img_file, 0, 0, 0, 210, '', '', '', false, 300, '', false, false, 0);
                 //ลายเซ็นต์ CA
                 $img_ca = $_SERVER['DOCUMENT_ROOT'] . '/sci-certificate/background/ca/susu.png';
-                $pdf->Image($img_ca, 110, 147, 0, 50, '', '', '', false, 300, '', false, false, 0);
+                $pdf->Image($img_ca, 110, 135, 0, 50, '', '', '', false, 300, '', false, false, 0);
                 // Print a text
                 $pdf->SetFont('thsarabun', 'B');
                 $pdf->SetTextColor(0, 98, 133);
@@ -339,7 +339,7 @@ if(isset($_POST['create'])){
                     'module_height' => 1 // height of a single module in points
                 ];
                 // QRCODE,M : QR-CODE Medium error correction
-                $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
+                $pdf->write2DBarcode('http://sciserv01.sci.kmitl.ac.th/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
         
                 //สร้าง pdf
                 $pdf->Output($fileNL, 'F');
@@ -382,7 +382,7 @@ if(isset($_POST['create'])){
                 $pdf->Image($img_file, 0, 0, 0, 210, '', '', '', false, 300, '', false, false, 0);
                 //ลายเซ็นต์ CA
                 $img_ca = $_SERVER['DOCUMENT_ROOT'] . '/sci-certificate/background/ca/susu.png';
-                $pdf->Image($img_ca, 110, 147, 0, 50, '', '', '', false, 300, '', false, false, 0);
+                $pdf->Image($img_ca, 110, 135, 0, 50, '', '', '', false, 300, '', false, false, 0);
                 // Print a text
                 $pdf->SetFont('thsarabun', 'B');
                 $pdf->SetTextColor(0, 98, 133);
@@ -409,7 +409,7 @@ if(isset($_POST['create'])){
                 $pdf->SetFont('thsarabun', 'B');
                 $pdf->SetTextColor(0, 98, 133);
                 $pdf->SetFontSize(34);
-                $pdf->MultiCell(0, 0, $person['award'], 0, 'C', 0, 1, 0, 110);
+                $pdf->MultiCell(0, 0, $person['award'], 0, 'C', 0, 1, 0, 105);
                 // $pdf->SetFont('thsarabun', 'B');
                 // $pdf->SetTextColor(28,46,75);
                 // $pdf->SetFontSize(30);
@@ -418,23 +418,23 @@ if(isset($_POST['create'])){
                 $pdf->SetFont('thsarabun', 'B');
                 $pdf->SetTextColor(0, 98, 133);
                 $pdf->SetFontSize(30);
-                $pdf->MultiCell(0, 0, $project, 0, 'C', 0, 1, 0, 127);
+                $pdf->MultiCell(0, 0, $project, 0, 'C', 0, 1, 0, 122);
         
         
                 $pdf->SetFont('thsarabun', 'B');
                 $pdf->SetTextColor(0, 98, 133);
                 $pdf->SetFontSize(28);
-                $pdf->MultiCell(0, 0, 'วันที่ ' . $date_at, 0, 'C', 0, 1, 0, 142);
+                $pdf->MultiCell(0, 0, 'วันที่ ' . $date_at, 0, 'C', 0, 1, 0, 137);
         
         
                 $pdf->SetFont('thsarabun', '');
                 $pdf->SetTextColor(0, 98, 133);
                 $pdf->SetFontSize(18);
-                $pdf->MultiCell(0, 0, '(รองศาสตราจารย์ ดร.สุธี  ชุติไพจิตร)', 0, 'C', 0, 1, 0, 182);
+                $pdf->MultiCell(0, 0, '(รองศาสตราจารย์ ดร.สุธี  ชุติไพจิตร)', 0, 'C', 0, 1, 0, 172);
                 $pdf->SetFont('thsarabun', '');
                 $pdf->SetTextColor(0, 98, 133);
                 $pdf->SetFontSize(18);
-                $pdf->MultiCell(0, 0, 'คณบดี คณะวิทยาศาสตร์', 0, 'C', 0, 1, 0, 188);
+                $pdf->MultiCell(0, 0, 'คณบดี คณะวิทยาศาสตร์', 0, 'C', 0, 1, 0, 178);
                 //สร้างไฟล์
                 $fol = "\\sci-certificate\\upload\\certificate\\{$_POST['folder']}\\";//window
                 // $fol = "/sci-certificate/upload/certificate/{$_POST['folder']}"; //linux
@@ -457,7 +457,7 @@ if(isset($_POST['create'])){
                     'module_height' => 1 // height of a single module in points
                 ];
                 // QRCODE,M : QR-CODE Medium error correction
-                $pdf->write2DBarcode('http://161.246.23.21/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
+                $pdf->write2DBarcode('http://sciserv01.sci.kmitl.ac.th/sci-certificate/upload/certificate/' . $_POST['folder'] . '/' . $filename, 'QRCODE,M', 20, 172, 30, 30, $style, 'N');
         
                 //สร้าง pdf
                 $pdf->Output($fileNL, 'F');
