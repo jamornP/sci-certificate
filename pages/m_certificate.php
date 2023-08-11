@@ -16,6 +16,7 @@ $personObj = new Data;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Science-Certificate</title>
     <link rel="stylesheet" href="/sci-certificate/theme/css/bootstrap-theme.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body class="font-kanit">
@@ -50,7 +51,7 @@ $personObj = new Data;
                         <p>เลือกพื้นหลัง</p>  
                         <div class="row">
                             <?php
-                                $bg = array("certificate-BG.png","expo2023.jpg","sciday2022.png","sciday2022-bronze.png","sciday2022-gold.png","sciday2022-silver.png","workshop2023.png");
+                                $bg = array("certificate-BG.png","expo2023.jpg","sciday2022.png","sciday2022-bronze.png","sciday2022-gold.png","sciday2022-silver.png","workshop2023.png","cer-01.png");
                                 for($i=0;$i<count($bg);$i++){
                                     echo "
                                     <div class='col-lg-2'>
@@ -76,6 +77,10 @@ $personObj = new Data;
                         <input class="form-check-input" type="radio" name="select" id="inlineRadio2" value="2" required>
                         <label class="form-check-label" for="inlineRadio2">ไม่มีโรงเรียน</label>
                     </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="select" id="inlineRadio3" value="3" required>
+                        <label class="form-check-label" for="inlineRadio3">สมาคมวิทยาศาสตร์</label>
+                    </div>
                     </div>
                     <div class="d-flex mt-3">
                         <select class="form-select me-2 " aria-label="Default select example" name="search">
@@ -95,8 +100,14 @@ $personObj = new Data;
                             <?php
                             $project = $personObj->getGroupProject();
                             foreach ($project as $pro) {
+                                $ck = $personObj->getGenCerByProject($pro['project']);
+                                if($ck){
+                                    $text2 = "สร้างแล้ว =>";
+                                }else{
+                                    $text2 = "";
+                                }
                                 echo "
-                                        <option value='{$pro['project']}'>{$pro['project']}</option>
+                                        <option value='{$pro['project']}'>{$text2} {$pro['project']}</option>
                                     ";
                             }
                             ?>
@@ -136,11 +147,16 @@ $personObj = new Data;
             $pro =$_POST['search'];
             $bg = $_POST['bg'];
             $select = $_POST['select'];
+            if($select==3){
+                $page = "cer-01.php";
+            }else{
+                $page = "gen.php";
+            }
         
         ?>
         <div class="card mt-5">
             <div class="card-header">
-                <form class="" action="gen.php" method="POST">
+                <form class="" action="<?php echo $page;?>" method="POST">
                     
                     
                     <div class="d-flex mt-2">
