@@ -42,7 +42,7 @@ class Data extends DbCertificate{
         $sql ="
             SELECT *
             FROM tb_data2
-            ORDER BY name 
+            ORDER BY id 
         ";
         $stmt = $this->pdo->query($sql);
         // $stmt->execute([$project]);

@@ -61,7 +61,7 @@ if (isset($_POST['excample'])) {
     $pdf->SetFont('thsarabun', 'B');
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetFontSize(26);
-    $pdf->MultiCell(0, 0, 'ได้ผ่านการทดสอบสมรรถนะและทักษะที่จำเป็น', 0, 'C', 0, 1, 0, 118);
+    $pdf->MultiCell(0, 0, 'ได้สอบผ่านการทดสอบสมรรถนะและทักษะที่จำเป็น', 0, 'C', 0, 1, 0, 118);
     $pdf->SetFont('thsarabun', 'B');
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetFontSize(26);
@@ -155,7 +155,7 @@ if (isset($_POST['create'])) {
         $pdf->SetFont('thsarabun', 'B');
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFontSize(26);
-        $pdf->MultiCell(0, 0, 'ได้ผ่านการทดสอบสมรรถนะและทักษะที่จำเป็น', 0, 'C', 0, 1, 0, 118);
+        $pdf->MultiCell(0, 0, 'ได้สอบผ่านการทดสอบสมรรถนะและทักษะที่จำเป็น', 0, 'C', 0, 1, 0, 118);
         $pdf->SetFont('thsarabun', 'B');
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFontSize(26);
@@ -198,7 +198,7 @@ if (isset($_POST['create'])) {
         $dataU['id'] = $person['id'];
         $dataU['file_cer'] = $serv;
         $show = $i . ". " . $person['name'];
-        echo "{$show}<br>";
+        // echo "{$show}<br>";
         $up = $personObj->updateCer01($dataU);
     }
     $pdf->Close();
